@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import exceptions.InvalidPieceException;
 import factory.PieceFactory;
 import interfaces.IPiece;
 import utility.ChessBoard;
@@ -11,7 +12,7 @@ import utility.ChessUtilities;
 
 public class Main {
 	
-	public List<String> printPossibleMoves(String pieceName, String location) {
+	public List<String> printPossibleMoves(String pieceName, String location) throws InvalidPieceException {
 		int[] coordinates = ChessUtilities.convertFromChessNotation(location);
         int x = coordinates[0];
         int y = coordinates[1];
@@ -23,12 +24,14 @@ public class Main {
 		if(piece != null) {
 			possibleMoves = piece.getPossibleMoves(x, y, board);
 			System.out.println(possibleMoves);
+		} else {
+			throw new InvalidPieceException("");
 		}
 		
 		return possibleMoves;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidPieceException {
 		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.println("Enter the piece type (King, Pawn, Queen): ");
 			String pieceName = scanner.nextLine();

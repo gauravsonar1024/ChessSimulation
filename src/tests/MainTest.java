@@ -1,4 +1,4 @@
-package main;
+package tests;
 
 import static org.junit.Assert.*;
 
@@ -7,12 +7,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+import exceptions.InvalidPieceException;
+import main.Main;
+
 public class MainTest {
 
 	@Test
-	public void testKingMoves( ) {
+	public void testKingMoves( ) throws InvalidPieceException {
 		Main m = new Main();
-		List<String> expectedMoves = new ArrayList();
+		List<String> expectedMoves = new ArrayList<String>();
 		expectedMoves.add("A2");
 		expectedMoves.add("B2");
 		expectedMoves.add("B1");
